@@ -35,21 +35,21 @@ Route	Description
 
 ## Setup & Installation
 Clone the repository
-git clone <your-repo-url>
-cd running-4life
+
+* git clone <your-repo-url>
+* cd running-4life
 
 Install dependencies
-npm install
+* npm install
 
 Create environment variable file:
-Create .env.local in the project root:
-VITE_MAPBOX_TOKEN=your_mapbox_token_here
+* Create .env.local in the project root: VITE_MAPBOX_TOKEN=your_mapbox_token_here
 
 Run development server
-npm run dev
+* npm run dev
 
 Running Tests
-npm test
+* npm test
 
 ## API Documentation & Dependencies
 Mapbox GL JS
@@ -64,12 +64,12 @@ estimated duration
 The response is parsed and displayed as a route line on the map.
 Documentation: https://docs.mapbox.com/api/navigation/directions/
 
-* Deployment
+### Deployment
 The application is deployed using Vercel.
 Live URL:
 https://running-4life-qp8va61e6-evrots-projects.vercel.app
 
-* Deployment Instructions
+Deployment Instructions:
 
 Push project to GitHub
 Import repository into Vercel

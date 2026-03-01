@@ -4,32 +4,33 @@ Project Description & Purpose
 Running 4Life is a React single-page application designed for recreational runners who want a simple way to track workouts and visualize running routes. The application allows users to log runs and view an interactive route using Mapbox mapping services. The goal of the project is to centralize workout tracking and route visualization into one accessible dashboard instead of relying on multiple separate tools.
 
 ## Features
-Log running workouts (date, distance, duration, notes)
-Interactive route visualization using Mapbox
-View individual run details
-Dynamic navigation using React Router
-Global state management using React Context
-Mobile-first responsive layout
-Unit testing with Vitest and React Testing Library
+* Log running workouts (date, distance, duration, notes)
+* Interactive route visualization using Mapbox
+* View individual run details
+* Dynamic navigation using React Router
+* Global state management using React Context
+* Mobile-first responsive layout
+* Unit testing with Vitest and React Testing Library
 
 ## Available Routes
 Route	Description
-/	Home page displaying application overview and summary
-/runs	Displays list of saved runs
-/runs/new	Form to create a new run and view route map
-/runs/:id	Displays detailed information for a specific run
-*	404 page for invalid routes
+
+* /	Home page displaying application overview and summary
+* /runs	Displays list of saved runs
+* /runs/new	Form to create a new run and view route map
+* /runs/:id	Displays detailed information for a specific run
+* 404 page for invalid routes
 
 ## Technologies Used
-React (Vite)
-React Router
-React Context API
-Mapbox GL JS
-Mapbox Directions API
-Vitest
-React Testing Library
-CSS (mobile-first responsive design)
-Vercel (deployment)
+* React (Vite)
+* React Router
+* React Context API
+* Mapbox GL JS
+* Mapbox Directions API
+* Vitest
+* React Testing Library
+* CSS (mobile-first responsive design)
+* Vercel (deployment)
 
 
 ## Setup & Installation
@@ -63,12 +64,12 @@ estimated duration
 The response is parsed and displayed as a route line on the map.
 Documentation: https://docs.mapbox.com/api/navigation/directions/
 
-Deployment
+* Deployment
 The application is deployed using Vercel.
 Live URL:
 https://running-4life-qp8va61e6-evrots-projects.vercel.app
 
-Deployment Instructions
+* Deployment Instructions
 
 Push project to GitHub
 Import repository into Vercel
@@ -89,13 +90,13 @@ New Run Page
 ![alt text](src/screenshots/runs_new.png)
 
 ## Known Issues
-Runs are stored only in client memory and are not persisted after page refresh
-Route selection currently uses predefined coordinates rather than user-selected map clicks
+* Runs are stored only in client memory and are not persisted after page refresh
+* Route selection currently uses predefined coordinates rather than user-selected map clicks
 
 ## Future Enhancements (Final Submission Plan)
 
-Persistent database storage (Node.js backend + database)
-User authentication and accounts
-Map click-to-select start and end points
-Advanced run analytics and progress charts
-Pace and weekly mileage statistics
+* Persistent database storage (Node.js backend + database)
+* User authentication and accounts
+* Map click-to-select start and end points
+* Advanced run analytics and progress charts
+* Pace and weekly mileage statistics

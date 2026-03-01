@@ -1,0 +1,134 @@
+/* ---------- Base / Mobile-first ---------- */
+:root {
+  --max-width: 1000px;
+  --pad: 16px;
+  --gap: 16px;
+  --border: #e5e7eb;
+  --text: #111827;
+  --muted: #6b7280;
+  --bg: #f9fafb;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Make images/media responsive by default */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Links */
+a { color: inherit; }
+a:hover { opacity: 0.85; }
+
+/* ---------- Layout helpers ---------- */
+.app-shell {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--pad);
+}
+
+.stack {
+  display: grid;
+  gap: var(--gap);
+}
+
+/* Responsive grid: 1 column on mobile */
+.grid-2 {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: 1fr;
+}
+
+/* ---------- Header / Nav ---------- */
+.header {
+  border-bottom: 1px solid var(--border);
+  background: white;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px var(--pad);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.nav {
+  border-bottom: 1px solid var(--border);
+  background: white;
+}
+
+.nav ul {
+  display: flex;
+  gap: 10px;
+  padding: 10px var(--pad);
+  margin: 0 auto;
+  max-width: var(--max-width);
+  list-style: none;
+  overflow-x: auto; /* mobile-friendly if links overflow */
+}
+
+.nav a {
+  display: inline-block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav a:hover {
+  background: #f3f4f6;
+}
+
+/* ---------- Forms / Buttons readability ---------- */
+label {
+  display: inline-block;
+  font-size: 0.95rem;
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+/* Improve tap targets on mobile */
+button, input, textarea {
+  font-size: 16px; /* prevents iOS zoom and keeps readable */
+}
+
+button {
+  min-height: 40px;
+}
+
+/* ---------- Breakpoints ---------- */
+/* Tablet */
+@media (min-width: 768px) {
+  :root { --pad: 20px; --gap: 18px; }
+
+  .grid-2 {
+    grid-template-columns: 1fr 1fr; /* form + map side by side */
+    align-items: start;
+  }
+
+  .nav ul { gap: 14px; }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  :root { --pad: 24px; --gap: 20px; }
+
+  .header-inner h1 {
+    font-size: 1.6rem;
+  }
+}

@@ -3,28 +3,97 @@ import React, { createContext, useContext, useMemo, useState } from 'react'
 const RunsContext = createContext(null)
 
 function makeId() {
-  // simple MVP id generator
   return crypto?.randomUUID?.() ?? String(Date.now())
 }
 
-export function RunsProvider({ children }) {
-  // Global shared state
-  const [runs, setRuns] = useState([
-    // You can start empty, or keep 1-2 seed runs for demo
-    { id: '1', date: '2026-02-25', distance: 3.2, duration: '00:28:10', notes: 'Easy run.' },
-    { id: '2', date: '2026-02-26', distance: 4.1, duration: '00:36:05', notes: '' },
-  ])
+function sanitizeNotes(value = '') {
+  return String(value).replace(/[<>]/g, '').trim().slice(0, 500)
+}
 
-  // Immutable updates only
+function isValidDate(value) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(value)
+}
+
+function isValidDuration(value) {
+  return /^(\d{1,2}):([0-5]\d):([0-5]\d)$/.test(value)
+}
+
+function sanitizeRun(runDraft) {
+  const safeDate = String(runDraft.date ?? '').trim()
+  const safeDistance = Number(runDraft.distance)
+  const safeDuration = String(runDraft.duration ?? '').trim()
+  const safeNotes = sanitizeNotes(runDraft.notes)
+
+  if (!isValidDate(safeDate)) {
+    throw new Error('Invalid run date.')
+  }
+
+  if (Number.isNaN(safeDistance) || safeDistance <= 0 || safeDistance > 200) {
+    throw new Error('Invalid run distance.')
+  }
+
+  if (!isValidDuration(safeDuration)) {
+    throw new Error('Invalid run duration.')
+  }
+
+  return {
+    date: safeDate,
+    distance: safeDistance,
+    duration: safeDuration,
+    notes: safeNotes,
+  }
+}
+
+function sanitizeRunUpdates(updates) {
+  const safeUpdates = {}
+
+  if ('date' in updates) {
+    const safeDate = String(updates.date ?? '').trim()
+    if (!isValidDate(safeDate)) {
+      throw new Error('Invalid run date.')
+    }
+    safeUpdates.date = safeDate
+  }
+
+  if ('distance' in updates) {
+    const safeDistance = Number(updates.distance)
+    if (Number.isNaN(safeDistance) || safeDistance <= 0 || safeDistance > 200) {
+      throw new Error('Invalid run distance.')
+    }
+    safeUpdates.distance = safeDistance
+  }
+
+  if ('duration' in updates) {
+    const safeDuration = String(updates.duration ?? '').trim()
+    if (!isValidDuration(safeDuration)) {
+      throw new Error('Invalid run duration.')
+    }
+    safeUpdates.duration = safeDuration
+  }
+
+  if ('notes' in updates) {
+    safeUpdates.notes = sanitizeNotes(updates.notes)
+  }
+
+  return safeUpdates
+}
+
+export function RunsProvider({ children }) {
+  const [runs, setRuns] = useState([])
+
   const addRun = (runDraft) => {
-    const newRun = { id: makeId(), ...runDraft }
+    const safeRun = sanitizeRun(runDraft)
+    const newRun = { id: makeId(), ...safeRun }
+
     setRuns((prev) => [newRun, ...prev])
     return newRun.id
   }
 
   const updateRun = (id, updates) => {
+    const safeUpdates = sanitizeRunUpdates(updates)
+
     setRuns((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, ...updates } : r))
+      prev.map((r) => (r.id === id ? { ...r, ...safeUpdates } : r))
     )
   }
 
@@ -47,6 +116,3 @@ export function useRuns() {
   if (!ctx) throw new Error('useRuns must be used inside RunsProvider')
   return ctx
 }
-
-
-

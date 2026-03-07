@@ -1,4 +1,4 @@
-function Textarea(props) {
+function Textarea({ style, ...props }) {
   return (
     <textarea
       {...props}
@@ -9,7 +9,8 @@ function Textarea(props) {
         border: '1px solid #ccc',
         width: '100%',
         marginTop: '4px',
-        marginBottom: '12px'
+        marginBottom: '12px',
+        ...style
       }}
     />
   )

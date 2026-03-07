@@ -7,12 +7,11 @@ function NewRunPage() {
     <div style={{ display: 'grid', gap: '16px' }}>
       <Card>
         <h2>Add a Run</h2>
-        <p>Enter run details and (later) select a route on the map.</p>
+        <p>Select your route, enter your information, and have fun!</p>
       </Card>
 
       <div style={{ display: 'grid', gap: '16px' }}>
-        <RunForm />
-        <MapPreview />
+        <RunForm />        
       </div>
     </div>
   )

@@ -1,7 +1,24 @@
-## Running 4Life — Running Companion SPA
-Project Description & Purpose
+# Running 4Life — Running Companion SPA
+## Project Overview
 
-Running 4Life is a React single-page application designed for recreational runners who want a simple way to track workouts and visualize running routes. The application allows users to log runs and view an interactive route using Mapbox mapping services. The goal of the project is to centralize workout tracking and route visualization into one accessible dashboard instead of relying on multiple separate tools.
+Running 4Life is a React single-page application designed for recreational runners who want a simple way to track workouts and visualize running routes. Many runners rely on multiple tools to log workouts, analyze performance, and view routes. Running 4Life consolidates these tasks into one lightweight dashboard where users can record runs, view detailed workout information, and interact with a map-based route visualization.
+
+The application focuses on simplicity, accessibility, and responsiveness, making it useful for both desktop and mobile users.
+
+The project demonstrates modern frontend development practices including authentication state management, secure routing, API integration, and comprehensive unit testing.
+
+## Problem Statement
+Recreational runners often track workouts using multiple disconnected tools such as spreadsheets, notes apps, or mapping software. These approaches can make it difficult to maintain a consistent running log or visualize routes clearly.
+
+Running 4Life addresses this problem by providing a centralized interface where runners can:
+
+* record workout details
+
+* visualize routes on an interactive map
+
+* access summary statistics
+
+* manage workouts through a simple dashboard
 
 ## Features
 * Log running workouts (date, distance, duration, notes)
@@ -11,6 +28,52 @@ Running 4Life is a React single-page application designed for recreational runne
 * Global state management using React Context
 * Mobile-first responsive layout
 * Unit testing with Vitest and React Testing Library
+
+## Interactive Mapping
+
+* Interactive map powered by Mapbox GL JS
+* Route visualization using the Mapbox Directions API
+* Map preview available when creating a run
+
+## Authentication System
+
+* User registration and login
+* JWT-style token simulation stored in session storage
+* Protected routes that require authentication
+* Logout functionality with session cleanup
+
+## Statistics
+
+* Total runs recorded
+* Total distance logged
+* Average pace calculation
+* Weekly summary visible only when authenticated
+
+## Security Enhancements
+
+* XSS mitigation through input validation and sanitization
+* Basic CSRF protection pattern in forms
+* Secure session-based authentication storage
+* Protected route enforcement
+
+## Testing
+
+* Comprehensive unit tests using:
+  * Vitest
+  * React Testing Library
+* Coverage includes:
+  * authentication flows
+  * protected routes
+  * form validation
+  * run creation
+  * context state management
+  * navigation behavior
+
+## UI / UX
+
+* Mobile-first responsive layout
+* Simple navigation structure
+* Interactive user feedback through alerts and validation
 
 ## Available Routes
 Route	Description
@@ -31,6 +94,29 @@ Route	Description
 * React Testing Library
 * CSS (mobile-first responsive design)
 * Vercel (deployment)
+
+## Project Structure
+
+src
+ ├── components
+ │   ├── auth
+ │   ├── layout
+ │   ├── runs
+ │   └── ui
+ ├── contexts
+ │   ├── AuthContext
+ │   └── RunsContext
+ ├── pages
+ │   ├── HomePage
+ │   ├── RunsPage
+ │   ├── RunDetailsPage
+ │   ├── LoginPage
+ │   └── RegisterPage
+ ├── tests
+ │   ├── authentication tests
+ │   ├── run management tests
+ │   └── navigation tests
+ └── assets
 
 
 ## Setup & Installation
@@ -91,12 +177,9 @@ New Run Page
 
 ## Known Issues
 * Runs are stored only in client memory and are not persisted after page refresh
-* Route selection currently uses predefined coordinates rather than user-selected map clicks
+
 
 ## Future Enhancements (Final Submission Plan)
 
 * Persistent database storage (Node.js backend + database)
-* User authentication and accounts
-* Map click-to-select start and end points
 * Advanced run analytics and progress charts
-* Pace and weekly mileage statistics

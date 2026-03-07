@@ -1,4 +1,4 @@
-function Input(props) {
+function Input({ style, ...props }) {
   return (
     <input
       {...props}
@@ -8,7 +8,8 @@ function Input(props) {
         border: '1px solid #ccc',
         width: '100%',
         marginTop: '4px',
-        marginBottom: '12px'
+        marginBottom: '12px',
+        ...style
       }}
     />
   )
